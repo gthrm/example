@@ -379,15 +379,6 @@ class BookingScreen extends React.Component {
       );
   }
 
-  scrollToEnd = () => {
-    // const { firstScrollToEnd } = this.state;
-    // if (firstScrollToEnd) {
-    //     this.scrollView.scrollToEnd({ animated: true });
-    // } else {
-    //     this.setState({ firstScrollToEnd: true })
-    // }
-  }
-
   subscribeHandler = (event) => {
     const { navigation } = this.props;
     navigation.state.params.subscribeHandler(event, this._getEvent);
