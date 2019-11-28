@@ -76,8 +76,7 @@ class BookingScreen extends React.Component {
     this.state = {
       event: undefined,
       isEventReady: false,
-      papers: undefined,
-      // firstScrollToEnd: false
+      papers: undefined
     };
     this._animatedValue = new Animated.Value(0);
     props.navigation.setParams({
@@ -186,22 +185,6 @@ class BookingScreen extends React.Component {
         (err) => {
           _errorHandler(err, this._apiOnPressToVotingMark.bind(this));
         }
-      );
-  }
-
-  _getCalendarEventIcs = async () => {
-    const { event } = this.state;
-    const accessToken = await _retrieveData('access_token');
-    api.getCalendarEventIcs(accessToken, event.id)
-      .then(
-        ({ data }) => {
-          console.log('getCalendarEventIcs', data);
-          const ics = getPath(data.path);
-          WebBrowser.openBrowserAsync(ics);
-        }
-      )
-      .catch(
-        (err) => console.log(err, err.response)
       );
   }
 
@@ -465,7 +448,6 @@ class BookingScreen extends React.Component {
                       eventId={event.eventId}
                       votings={event.polls}
                       subscribeHandler={this.subscribeHandler}
-                      addEventToCalendar={this._getCalendarEventIcs}
                       onPressToSendComment={this.onPressToSendComment}
                       papers={papers}
                       onPressToDownload={this.onPressToDownload}
